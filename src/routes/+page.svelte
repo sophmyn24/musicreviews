@@ -20,12 +20,20 @@
 
 	</h1>
 
+	<div class="text-column">
+		<h1>What song are you looking for?</h1>
+	
+	
+		
+		<pre>search bar</pre>
+	
+		
+	</div>
+
 	
 
-	<Counter />
-	<h2>
-		(counter could show the number of users active?))
-	</h2>
+	<!-- <Counter /> -->
+	
 </section>
 
 <style>

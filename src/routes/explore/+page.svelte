@@ -1,15 +1,15 @@
 <svelte:head>
-	<title>Search</title>
+	<title>Explore</title>
 	<meta name="description" content="What song are you looking for?" />
 </svelte:head>
 
 
+
 <div class="text-column">
-	<h1>What song are you looking for?</h1>
+	<!-- <h1>Hi, name</h1> -->
+
+	<p>
+		could have suggestions, popular posts
 
 
-	
-	<pre>search bar</pre>
-
-	
 </div>
