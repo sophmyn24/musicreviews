@@ -18,14 +18,14 @@
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	
 
 	<Counter />
+	<h2>
+		(counter could show the number of users active?))
+	</h2>
 </section>
 
 <style>
