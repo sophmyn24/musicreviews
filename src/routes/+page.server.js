@@ -1,6 +1,6 @@
 import request from 'request';
 
-const client_id = 'fe1391f38c164daaa7076eef07442ceb’;
+const client_id = 'fe1391f38c164daaa7076eef07442ceb';
 const client_secret = 'ca0df2316b6b42d49863145dc82f3471';
 
 const authOptions = {

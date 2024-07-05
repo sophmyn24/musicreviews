@@ -1,15 +1,14 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	let search = ""; 
+	// let search = ""; 
 
 	export let data; // data from the +page.server.js
 	let accessToken = data.token; // the spotify access token
 	let query = ''; // what we are searching for
 	let results = []; // where we are going to put the results
 	let queryType = 'track'; // what type of thing we are searching for on spotify
-	async function handleKeydown(event) { // handle the change in the input
+	
+	async function handleKeydown() { // handle the change in the input
 		if (query && data.token) { // if we have a query and a token
 		let url = `https://api.spotify.com/v1/search?query=${query
 			}&offset=0&limit=20&type=${queryType}&market=TW`; // the url to search for the query
@@ -36,16 +35,18 @@
 		// };
 
 		
-		let formData = new FormData();
-		formData.append("grant_type", 'client_credentials');
+		// let formData = new FormData();
+		// formData.append("grant_type", 'client_credentials');
 
-		let req = await fetch('https://accounts.spotify.com/api/token', {
-			method: 'POST',
-			headers: {
-				'Authorization': 'Basic ' + (btoa(`${client_id}:${client_secret}`))
-			},
-			body: formData
-		});
+		// async function handleSearch(){
+		// 	let req = await fetch('https://accounts.spotify.com/api/token', {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Authorization': 'Basic ' + (btoa(`${client_id}:${client_secret}`))
+		// 		},
+		// 		body: formData
+		// 	});
+		// }
 		
 		// `-------${search}-----`
 		// let data = await req.json();
@@ -102,8 +103,7 @@
 		<h1>What song are you looking for?</h1>
 	
 	
-		<input
-			type="search" placeholder="Search for a song" bind:value={search}
+		<input type="search" placeholder="Search for a song" bind:value={query} on:keydown={handleKeydown}>
 			
             
 	</div>
