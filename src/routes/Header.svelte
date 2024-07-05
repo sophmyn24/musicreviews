@@ -1,13 +1,13 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/logo.png';
 	import github from '$lib/images/github.svg';
 </script>
 
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+			<img src={logo} alt="SvelteKit" id="logo"/>
 		</a>
 	</div>
 
@@ -73,7 +73,7 @@
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		--background: rgba(233, 240, 248, 0.402);
 	}
 
 	svg {
@@ -132,4 +132,11 @@
 	a:hover {
 		color: var(--color-theme-1);
 	}
+
+	#logo {
+		width: 60px;
+		height: 60px;
+	}
+
+
 </style>

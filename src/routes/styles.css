@@ -7,9 +7,9 @@
 	--color-bg-0: rgb(159, 197, 237);
 	--color-bg-1: hsl(201, 55%, 90%);
 	--color-bg-2: hsl(211, 60%, 84%);
-	--color-theme-1: #2076bb;
-	--color-theme-2: #4075a6;
-	--color-text: rgb(150, 189, 228);
+	--color-theme-1: #2882cb;
+	--color-theme-2: #72ade4;
+	--color-text: rgb(111, 170, 229);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
