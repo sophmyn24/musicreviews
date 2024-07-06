@@ -1,5 +1,5 @@
 <script>
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import welcome_fallback from '$lib/images/search.gif';
 	// let search = ""; 
 
 	export let data; // data from the +page.server.js
@@ -14,7 +14,7 @@
 			}&offset=0&limit=20&type=${queryType}&market=TW`; // the url to search for the query
 		let res = await fetch(url, { headers: { Authorization : `Bearer ${accessToken}`}}); // make the request to spotify
 		let spotifyData = await res.json(); // convert the response to json
-		results = spotifyData.tracks.items; // get the tracks from the response
+		results = spotifyData.tracks.items || []; // get the tracks from the response
 		console.log(results); // log the results to the console
 		}
 	}
@@ -76,12 +76,7 @@
 	// 			console.log(data);
 	// 		})
 	// 	})
-	let result = [
-		{songId:"1", name:"Song name 1", thumbnail:''},
-		{songId:"2", name:"Song name 2", thumbnail:''},
-		{songId:"3", name:"Song name 3", thumbnail:''}
-	]
-
+	
 </script>
 
 <svelte:head>
@@ -90,35 +85,65 @@
 </svelte:head>
 
 <section>
+
+
 	<h1>
 		<span class="welcome">
 			<picture >
-				<img src={welcome_fallback} alt="Welcome" style="width:200px;height:200px;" />
+				<img src={welcome_fallback} alt="Welcome" style="position:absolute; right:-40px; top: 20px; height:160px" />
 			</picture>
 		</span>
 
 	</h1>
 
 	<div class="text-column">
-		<h1>What song are you looking for?</h1>
-	
-	
-		<input type="search" placeholder="Search for a song" bind:value={query} on:keydown={handleKeydown}>
+		<input type="search" id="ip1" style="position:absolute; top:280px; right:450px; width:500px; color:#142f5f"  placeholder="Find any track..." bind:value={query} on:keydown={handleKeydown}>
+		<div>
+		{#each results as track, i}
+			<a href={`/track/${track.id}`} class="track">
+				<img src={track.album.images[0].url} alt="album"/>
+				<div>{track.name}</div>
+				<div>{track.album.name}</div>
+			</a>
 			
+		{/each}
+		</div>
             
 	</div>
 
-	<!-- on:change={handleSearch()}>
+<!-- padding (inside), margin (outside) -->
 
-            for (let i = 0; i < result.length; i++) {
-                text += cars[i] + "<br>";
-              } -->
-
-	<!-- <Counter /> -->
-	
+            
 </section>
 
 <style>
+
+#ip1 {
+    border-radius: 18px;
+    border-radius: 25px;
+    border: 2px solid rgb(111, 137, 174);
+    padding: 20px; 
+    width: 200px;
+    height: 15px;    
+}
+
+	.track {padding: 30px;
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+		color:#142f5f;
+		width:500px
+		
+	}
+
+	.track > img {
+		height:100px
+	}
+
+	::placeholder {
+		color:rgb(141, 184, 221)
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
@@ -140,7 +165,7 @@
 	}
 
 	.welcome img {
-		position: absolute;
+		position: absolute; 
 		width: 100%;
 		height: 100%;
 		top: 0;
