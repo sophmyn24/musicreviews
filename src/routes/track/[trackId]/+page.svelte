@@ -1,44 +1,39 @@
 <script>
 export let data;
 let track=data.track;
+let comments = data.comments
 </script>
+
+
 
 <div class='track' >
 <img src={track.album.images[0].url} alt="album"/>
-<div>Title: {track.name}</div>
+<div class="track_name">{track.name}</div>
 <div>Album: {track.album.name}</div>
 <div>Artist: {track.artists[0].name}</div>
+<figure class="audio">
+    <!-- <figcaption>Preview:</figcaption> -->
+    <audio controls src={track.preview_url}></audio>
+  </figure>
 </div>
 
-<div>
-<input class="input" id="ip1" placeholder="Thoughts on {track.name}?">
-<input class="submit"  id="ip2" name="submit" type="submit" value="Comment"/>
-  
+<form method="POST">
+	<input class="input" id="ip1" name="song_comment" placeholder="Thoughts on {track.name}?">
+    <input class="submit"  name="submit" type="submit" value="Comment"/>
+</form>
+
+<div class="comment_section" >
+    {#each comments as comment}
+    <!-- how to make it so you can't comment nothing (if comment =! ""), how to organize in order of date, how to make text wrap around -->
+    <h1 class="comment_details">
+    <div class="comment">
+        {comment.comment}</div>
+    <div class="date"> 
+        {new Date(comment.createdAt).toLocaleDateString()}</div>
+    </h1>
+    {/each}
 
 </div>
-
-<!-- <div id="comment">
-
-    <h3>Leave a Comment</h3>
-  
-    <form action="post_comment.php" method="post" id="commentform">
-  
-      <label for="comment_author" class="required">Your name</label>
-      <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required="required">
-  
-      <label for="email" class="required">Your email;</label>
-      <input type="email" name="email" id="email" value="" tabindex="2" required="required">
-  
-      <label for="comment" class="required">Your message</label>
-      <textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
-  
-     
-      <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
-      <input name="submit" type="submit" value="Submit comment" />
-  
-    </form>
-  
-  </div> -->
 
 
 
@@ -47,19 +42,17 @@ let track=data.track;
     #ip1 {
         border-radius: 18px;
         border-radius: 25px;
-        border: 2px solid rgb(111, 137, 174);
         padding: 20px; 
-        height: 15px;    
+        height: 15px;   
+        background-color: hsl(207, 56%, 78%);
+        border: 1px solid #ccc; 
+        color: hsl(208, 41%, 87%);
     }
 
-    #ip2 {
-        border-radius: 18px;
-        border-radius: 25px;
-        /* border: 2px solid rgb(111, 137, 174); */
-        height:60px
+    .track_name {
+        font-size: 20px;
+        color:rgb(56, 89, 121)
     }
-
-
 
     .comment {
         position:absolute; top:500; right:500;
@@ -67,8 +60,17 @@ let track=data.track;
 
 
     .track {
-        position:absolute; top:200px; right:1000px;
+        position:absolute; top:150px; right:1000px;
+        width:300px;
+        border: 1px solid #ccae6e;
+        padding: 20px;
+        margin: 10px;
+        background-color: #eae2cd;
 
+    }
+
+    ::placeholder {
+        color: rgb(91, 142, 193);
     }
 
     .track > img {
@@ -77,14 +79,53 @@ let track=data.track;
     }
 
     .input {
-        position:absolute; top:220px; right:400px;
+        position:absolute; top:160px; right:400px;
         width:500px
     }
 
     .submit {
-        position:absolute; top:220px; right:240px;
+        position:absolute; top:160px; right:250px;
         width:100px;
-        align-items:center
+        align-items:center;
+        background-color: hsl(207, 56%, 78%);
+        border: 1px solid #ccc;
+        border-radius: 18px;
+        border-radius: 25px;
+        height:55px;
+        color:rgb(91, 142, 193);
+    }
+
+
+    .comment_section {
+        display:flex;
+        position:absolute; top:260px; left:490px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        background-color: #f2a5c8;
+        width: 520px;
+        flex-direction:column;
+    }
+
+    .comment_details {
+        display:flex;
+        font-size:16px;
+        justify-content: space-between;
+        
+        
+    }
+
+    .date {
+        position:absolute; right: 30px;
+    }
+
+    .comment {
+        position:absolute; left: 30px;
+        
+    }
+
+    .audio {
+        position:relative; left:-40px;
     }
 
 </style>

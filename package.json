@@ -24,6 +24,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@upstash/redis": "^1.32.0",
     "request": "^2.88.2"
   }
 }

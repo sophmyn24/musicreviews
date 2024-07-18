@@ -98,11 +98,11 @@
 
 	<div class="text-column">
 		<input type="search" id="ip1" style="position:absolute; top:280px; right:450px; width:500px; color:#142f5f"  placeholder="Find any track..." bind:value={query} on:keydown={handleKeydown}>
-		<div>
+		<div class="search_results">
 		{#each results as track, i}
 			<a href={`/track/${track.id}`} class="track">
 				<img src={track.album.images[0].url} alt="album"/>
-				<div>{track.name}</div>
+				<div> {track.name}</div>
 				<div>{track.album.name}</div>
 			</a>
 			
@@ -117,22 +117,30 @@
 </section>
 
 <style>
+	
+	.search_results {
+		position:relative; top:30px;
+		background-color: #a5caf2;
+        border: 1px solid #ccc;
 
-#ip1 {
-    border-radius: 18px;
-    border-radius: 25px;
-    border: 2px solid rgb(111, 137, 174);
-    padding: 20px; 
-    width: 200px;
-    height: 15px;    
-}
+	}
+
+	#ip1 {
+		border-radius: 18px;
+		border-radius: 25px;
+		border: 2px solid rgb(111, 137, 174);
+		padding: 20px; 
+		width: 200px;
+		height: 15px;    
+	}
 
 	.track {padding: 30px;
 		display:flex;
 		justify-content:space-between;
 		align-items:center;
 		color:#142f5f;
-		width:500px
+		width:500px;
+		gap: 40px
 		
 	}
 
@@ -150,6 +158,7 @@
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
+		
 	}
 
 	h1 {

@@ -5,11 +5,12 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: rgb(239, 131, 165);
-	--color-bg-1: hsl(291, 78%, 86%);
+	--color-bg-1: hsl(49, 51%, 85%);
+	/* --color-bg-1: hsl(291, 78%, 86%); */
 	--color-bg-2: hsl(207, 56%, 78%);
 	--color-theme-1: #142f5f;
 	--color-theme-2: #72ade4;
-	--color-text: rgb(52, 109, 166);
+	--color-text: rgb(91, 142, 193);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
