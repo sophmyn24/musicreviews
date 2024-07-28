@@ -42,10 +42,11 @@ export const actions = {
 	default: async ({ params, request }) => {
 		const data = await request.formData();
 		const song_comment = data.get("song_comment");
+    if(song_comment){
     console.log(song_comment)
-
+    
     await redis.sadd(params.trackId, JSON.stringify({comment:song_comment, createdAt:Date.now()}));
-
+    }
 		return { success: true };
 	},
 };
