@@ -1,3 +1,11 @@
+<script>
+	export let data;
+	console.log(data)
+	let full_name = data.user.full_name;
+	let email = data.user.email;
+	
+</script>
+
 <svelte:head>
 	<title>Profile</title>
 	<meta name="description" content="About this app" />
@@ -10,9 +18,9 @@
 		Profile info:
 	</p>
 
-	<pre>username
-picture
-could have a user qr code?
+	<pre>
+		{full_name}
+		{email}
 	</pre>
 
 </div>

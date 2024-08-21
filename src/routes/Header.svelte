@@ -5,7 +5,7 @@
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<a href={`/profile`}>
 			<img src={logo} alt="SvelteKit" id="logo"/>
 		</a>
 	</div>
@@ -29,6 +29,9 @@
 			
 			<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
 				<a href="/profile">Profile</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/profile_redirect' ? 'page' : undefined}>
+				<a href="/profile_redirect">Join</a>
 			</li>
 
 			
@@ -81,7 +84,7 @@
 	}
 
 	ul {
-		position:absolute; right:1100px;
+		position:absolute; right:1050px;
 		padding: 0;
 		margin: 0;
 		height: 4em;
@@ -133,5 +136,9 @@
 		height: 80px;
 	}
 
+
+	.signup {
+		position:absolute; right:100px;
+	}
 
 </style>

@@ -4,6 +4,7 @@ let track=data.track;
 let comments = data.comments;
 
 
+if (typeof window !== 'undefined') {
 let image = new Image();
 image.crossOrigin = "anonymous";
 image.onload = function() {
@@ -15,7 +16,7 @@ image.onload = function() {
     let color1 = context?.getImageData(image.width/3, image.height/3, 1, 1).data;
     let color2 = context?.getImageData(image.width/2, image.height/2, 1, 1).data;
     let color3 = context?.getImageData((image.width/3)*2, (image.height/3)*2, 1, 1).data;
-    let topEl = document.querySelector('.app')
+    let topEl = document.querySelector('.trackapp')
     if (topEl?.style) {
         topEl.style.backgroundImage = `radial-gradient(
             50% 50% at 50% 50%,
@@ -27,8 +28,7 @@ image.onload = function() {
 }
 image.src = track.album.images[0].url;
 
-
-// if (typeof window !== 'undefined') {
+}
 //     let image = new Image();
 //     image.crossOrigin = 'Anonymous';
 //     image.onload = function() {
@@ -85,7 +85,12 @@ image.src = track.album.images[0].url;
     <!-- how to make it so you can't comment nothing (if comment =! ""), how to organize in order of date, how to make text wrap around -->
     {#if comment.comment}
     <h1 class="comment_details">
+
         
+    <!-- <div>
+        {profile_indicator} !!!!!!!!!!
+    </div>
+         -->
     <div class="comment">
         {comment.comment}</div>
         
@@ -100,6 +105,8 @@ image.src = track.album.images[0].url;
 
 
 <style>
+
+
 
     #ip1 {
         border-radius: 18px;

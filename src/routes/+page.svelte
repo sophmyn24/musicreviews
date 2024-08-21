@@ -1,5 +1,7 @@
 <script>
 	import welcome_fallback from '$lib/images/search.gif';
+	import Header from './Header.svelte';
+	import './styles.css';
 	// let search = ""; 
 
 	export let data; // data from the +page.server.js
@@ -84,37 +86,49 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<div class="app">
+	<Header />
+
+	<main>
+		<section>
 
 
-	<h1>
-		<span class="welcome">
-			<picture >
-				<img src={welcome_fallback} alt="Welcome" style="position:absolute; right:-40px; top: 20px; height:160px" />
-			</picture>
-		</span>
+			<h1>
+				<span class="welcome">
+					<picture >
+						<img src={welcome_fallback} alt="Welcome" style="position:absolute; right:-40px; top: 20px; height:160px" />
+					</picture>
+				</span>
+		
+			</h1>
+		
+			<div class="text-column">
+				<input type="search" id="ip1" style="position:absolute; top:280px; right:450px; width:500px; color:#142f5f"  placeholder="Find any track..." bind:value={query} on:keydown={handleKeydown}>
+				<div class="search_results">
+				{#each results as track, i}
+					<a href={`/track/${track.id}`} class="track">
+						<img src={track.album.images[0].url} alt="album"/>
+						<div> {track.name}</div>
+						<div>{track.album.name}</div>
+					</a>
+					
+				{/each}
+				</div>
+					
+			</div>
+		
+		<!-- padding (inside), margin (outside) -->
+		
+					
+		</section>
+		
+	</main>
 
-	</h1>
+	<footer>
+		<p>music reviews</p>
+	</footer>
+</div>
 
-	<div class="text-column">
-		<input type="search" id="ip1" style="position:absolute; top:280px; right:450px; width:500px; color:#142f5f"  placeholder="Find any track..." bind:value={query} on:keydown={handleKeydown}>
-		<div class="search_results">
-		{#each results as track, i}
-			<a href={`/track/${track.id}`} class="track">
-				<img src={track.album.images[0].url} alt="album"/>
-				<div> {track.name}</div>
-				<div>{track.album.name}</div>
-			</a>
-			
-		{/each}
-		</div>
-            
-	</div>
-
-<!-- padding (inside), margin (outside) -->
-
-            
-</section>
 
 <style>
 	
@@ -180,4 +194,56 @@
 		top: 0;
 		display: block;
 	}
+
+	.app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+		width: 100%;
+		max-width: 64rem;
+		margin: 0 auto;
+		box-sizing: border-box;
+		
+	}
+
+	footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 12px;
+	}
+
+	footer a {
+		font-weight: bold;
+	}
+
+	@media (min-width: 480px) {
+		footer {
+			padding: 12px 0;
+		}
+	}
 </style>
+
+<!-- 
+
+<div class="app">
+	<Header />
+
+	<main>
+		<slot />
+	</main>
+
+	<footer>
+		<p>music reviews</p>
+	</footer>
+</div>
+
+ -->
