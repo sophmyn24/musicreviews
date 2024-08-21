@@ -1,6 +1,15 @@
 import request from 'request';
 import { Redis } from '@upstash/redis';
 import crypto from 'crypto'
+import { v2 as cloudinary } from 'cloudinary';
+
+// Configuration
+cloudinary.config({ 
+  cloud_name: 'dgkhrzcq4', 
+  api_key: '533867429965859', 
+  api_secret: 'fGREm4iF-KyAb8jN8XpvRN33WXg' // Click 'View API Keys' above to copy your API secret
+});
+
 
 const client_id = 'fe1391f38c164daaa7076eef07442ceb';
 const client_secret = 'ca0df2316b6b42d49863145dc82f3471';
@@ -73,3 +82,42 @@ export const actions = {
 		return { success: true };
 	},
 };
+
+
+
+
+(async function() {
+
+    
+    
+    // Upload an image
+     const uploadResult = await cloudinary.uploader
+       .upload(
+           'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
+               public_id: 'shoes',
+           }
+       )
+       .catch((error) => {
+           console.log(error);
+       });
+    
+    console.log(uploadResult);
+    
+    // Optimize delivery by resizing and applying auto-format and auto-quality
+    const optimizeUrl = cloudinary.url('shoes', {
+        fetch_format: 'auto',
+        quality: 'auto'
+    });
+    
+    console.log(optimizeUrl);
+    
+    // Transform the image: auto-crop to square aspect_ratio
+    const autoCropUrl = cloudinary.url('shoes', {
+        crop: 'auto',
+        gravity: 'auto',
+        width: 500,
+        height: 500,
+    });
+    
+    console.log(autoCropUrl);    
+})();

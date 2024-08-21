@@ -20,8 +20,11 @@ export async function handle({ event, resolve }) {
 
     let sessionId = event.cookies.get('sessionid')
     if (!sessionId) {
+        console.log(sessionId)
         // if there is no cookie id generate one
-        sessionId = (Math.random() * 0xFFFFFFFF).toString(16);
+        // sessionId = (Math.random() * 0xFFFFFFFF).toString(16);
+        
+        sessionId = 1;
         event.cookies.set('sessionId', sessionId, {
             maxAge: 1000000 / 1000, // in seconds
             sameSite: 'Lax', // this is important to prevent CSRF attacks
@@ -35,11 +38,12 @@ export async function handle({ event, resolve }) {
     }
     //redis get the session for this cookie id
     let session = await redis.get('session:'+sessionId);
+    console.log(session, sessionId)
     let sessionString = JSON.stringify(session || '{}');
 
 
     // attach session to event.local.session = session
-    event.locals.session = session;
+    event.locals.session = session || {}
 
 	const response = await resolve(event);
     

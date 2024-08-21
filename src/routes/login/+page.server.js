@@ -50,7 +50,7 @@ export const actions = {
     // let hash = crypto.pbkdf2Sync(password, salt,
     //     1000, 64, `sha512`).toString(`hex`);
     let user = await locals.redis.get('user:'+email);
-    console.log(user)
+    console.log(user, 'hi')
       let hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, `sha512`).toString(`hex`);
       if (user.hash === hash) {
         locals.session.user = user;

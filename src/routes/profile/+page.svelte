@@ -1,6 +1,6 @@
 <script>
 	export let data;
-	console.log(data)
+	console.log(data, "hey")
 	let full_name = data.user.full_name;
 	let email = data.user.email;
 	
@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Hi, name</h1>
+	<h1>Hi, {full_name}</h1>
 
 	<p>
 		Profile info:

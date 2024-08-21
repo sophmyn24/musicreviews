@@ -1,15 +1,30 @@
+
+<script>
+	import { CldUploadButton } from 'svelte-cloudinary';
+</script>
+
 <svelte:head>
 	<title>Registration</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
+
+
+
+
 <h1>Create your account</h1>
 
 <form method="POST" class="signup">
 	<input class="input" id="ip1" name="full_name" placeholder="Full name">
 	<input class="input" id="ip1" type="email" name="email" placeholder="Email address">
 	<input class="input" id="ip1" type="password" name="password" placeholder="Password">
+	<!-- <input class="file_upload" type='file' id=#ip1> -->
+	<CldUploadButton uploadPreset="name=upload" />
+	
     <input class="input" id="ip2" name="submit" type="submit" value="submit"/>
 </form>
+
+
+
 
 <div class="text-column">
 	
@@ -45,4 +60,9 @@
 	::placeholder {
         color: rgb(91, 142, 193);
     }
+
+	.file_upload {
+		position:absolute; top:100px;
+	}
+
 </style>
