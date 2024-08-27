@@ -18,14 +18,11 @@ const redis = new Redis({
 export async function handle({ event, resolve }) {
     event.locals.redis = redis;
 
-    let sessionId = event.cookies.get('sessionid')
+    let sessionId = event.cookies.get('session_id')
     if (!sessionId) {
-        console.log(sessionId)
         // if there is no cookie id generate one
-        // sessionId = (Math.random() * 0xFFFFFFFF).toString(16);
-        
-        sessionId = 1;
-        event.cookies.set('sessionId', sessionId, {
+        sessionId = Math.floor(Math.random() * 0xFFFFFFFF).toString(16);
+        event.cookies.set('session_id', sessionId, {
             maxAge: 1000000 / 1000, // in seconds
             sameSite: 'Lax', // this is important to prevent CSRF attacks
             domain: event.request.host,
@@ -34,11 +31,10 @@ export async function handle({ event, resolve }) {
         });
 
     } else {
-        console.log('sessionId', sessionId)
+        console.log('session_id', sessionId)
     }
     //redis get the session for this cookie id
     let session = await redis.get('session:'+sessionId);
-    console.log(session, sessionId)
     let sessionString = JSON.stringify(session || '{}');
 
 
@@ -49,7 +45,6 @@ export async function handle({ event, resolve }) {
     
     // if event.local.session has changed then save back to redis
     let newSessionString = JSON.stringify(event.locals.session);
-    console.log('newSessionString', newSessionString)
     if (newSessionString !== sessionString) {
       await redis.set('session:'+sessionId, newSessionString);
     }
