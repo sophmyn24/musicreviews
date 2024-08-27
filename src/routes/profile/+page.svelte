@@ -3,6 +3,7 @@
 	console.log(data, "hey")
 	let full_name = data.user.full_name;
 	let email = data.user.email;
+	let thumb = data.user.thumb;
 	
 </script>
 
@@ -19,6 +20,7 @@
 	</p>
 
 	<pre>
+		<img src={thumb} alt="profile" width={100}/>
 		{full_name}
 		{email}
 	</pre>
