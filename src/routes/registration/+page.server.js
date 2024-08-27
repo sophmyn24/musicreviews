@@ -67,16 +67,16 @@ export const actions = {
 		const full_name = data.get("full_name");
     const email = data.get("email");
     const password = data.get("password");
+    const thumb = data.get("thumb");
     if(full_name && email && password){
-    console.log(full_name && email && password)
-    let existingUser = await redis.get(email);
-    if (existingUser) return {success: false, error:'account already exists'};
-
-    let userId = await redis.incr('user_ids');
-    let salt = crypto.randomBytes(16).toString('hex');
-    let hash = crypto.pbkdf2Sync(password, salt,
-        1000, 64, `sha512`).toString(`hex`);
-    await redis.set('user:'+email, JSON.stringify({userId, full_name,email,hash,salt,createdAt:Date.now()}));
+      let existingUser = await redis.get(email);
+      if (existingUser) return {success: false, error:'account already exists'};
+      console.log(thumb, full_name, email)
+      let userId = await redis.incr('user_ids');
+      let salt = crypto.randomBytes(16).toString('hex');
+      let hash = crypto.pbkdf2Sync(password, salt,
+          1000, 64, `sha512`).toString(`hex`);
+      await redis.set('user:'+email, JSON.stringify({userId, full_name,email,thumb,hash,salt,createdAt:Date.now()}));
     }
     
 		return { success: true };
