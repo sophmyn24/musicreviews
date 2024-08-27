@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Registration</title>
+	<title>Login</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 

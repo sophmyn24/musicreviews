@@ -3,7 +3,7 @@
 	console.log(data, "hey")
 	let full_name = data.user.full_name;
 	let email = data.user.email;
-	
+	let first_name = full_name.split(' ')[0];
 </script>
 
 <svelte:head>
@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Hi, {full_name}</h1>
+	<h1>Hi, {first_name}</h1>
 
 	<p>
 		Profile info:

@@ -17,8 +17,21 @@
 	<input class="input" id="ip1" name="full_name" placeholder="Full name">
 	<input class="input" id="ip1" type="email" name="email" placeholder="Email address">
 	<input class="input" id="ip1" type="password" name="password" placeholder="Password">
-	<!-- <input class="file_upload" type='file' id=#ip1> -->
-	<CldUploadButton uploadPreset="name=upload" />
+	<!-- <input class="file_upload" type='file' id=#ip1 name="profile_pic"> -->
+	<!-- <CldUploadButton uploadPreset="name=upload" /> -->
+	<!-- const uploadResult = await cloudinary.uploader
+       .upload(
+           'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
+               public_id: 'shoes',
+           }
+       )
+       .catch((error) => {
+           console.log(error);
+       });
+    
+    console.log(uploadResult);
+     -->
+
 	
     <input class="input" id="ip2" name="submit" type="submit" value="submit"/>
 </form>
